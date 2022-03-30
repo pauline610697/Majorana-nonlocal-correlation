@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[4]:
-
 from mpi4py import MPI
 
 import numpy as np
@@ -11,16 +6,12 @@ import scipy.sparse.linalg as sla
 import TwoQD_module_2 as Maj
 import matplotlib.pyplot as plt
 
-
-# In[3]:
-
 comm = MPI.COMM_WORLD;
 rank = comm.Get_rank();
 
 NS_dict = {'alpha':2.5, 'Delta_0':0.9,'wireLength':500,'t':25.0, 'mu_lead':25.0, 'Nbarrier':2, 'Ebarrier':10.0, 'QD':'yes', 'QD2':'no', 'VD':4, 'dotLength':30, 'SE':'no', 'VZC':'yes','Vzc':20,'Vz':3.0, 'voltage':0.0, 'varymu':'no','mu':1.0,'lamd':1.5,'gamma':0.01};
 
 # ======== G as a function of Vz ==============
-
 voltageMin = -1.5; voltageMax = 1.5; voltageNumber = 3001;
 voltageRange = np.linspace(voltageMin, voltageMax, voltageNumber);
 
@@ -51,10 +42,7 @@ gFile.close();
 #tvFile.write('\n');
 #tvFile.close();
 
-# In[ ]:
-
 # ======== G as a function of mu ==============
-
 #voltageMin = -1.5; voltageMax = 1.5; voltageNumber = 3001;
 #voltageRange = np.linspace(voltageMin, voltageMax, voltageNumber);
 #
@@ -66,9 +54,3 @@ gFile.close();
 #    gFile.write( str(Maj.conductance(NS_dict)) + ',' );
 #gFile.write('\n');
 #gFile.close();
-
-
-
-
-
-
