@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jul 28 20:10:19 2019
-
-@author: laiyihua
-"""
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -30,7 +22,6 @@ for line in datafile:
         for j in range(cols):
                 row.append(float(y1[j]))
         Gmatrix.append(row)
-
        
 fig, ax = plt.subplots()
 im = ax.pcolor(x,y,Gmatrix, cmap='RdBu_r')
