@@ -1,5 +1,3 @@
-# In[1]
-
 import numpy as np
 import kwant
 import math
@@ -19,8 +17,6 @@ ty = np.array([[0.0, -1j], [1j, 0.0]]); tz = np.array([[1.0, 0.0], [0.0, -1.0]])
 tzs0 = np.kron(tz,s0); t0s0 = np.kron(t0,s0); t0sx = np.kron(t0,sx);
 txs0 = np.kron(tx,s0); tzsy = np.kron(tz,sy); t0sz = np.kron(t0,sz);
 
-# In[327]:
-
 def NSjunction(args_dict):
     t = args_dict['t'];
     alpha = args_dict['alpha'];
@@ -37,12 +33,10 @@ def NSjunction(args_dict):
     
     #========= set-up of NS-junction =========
     junction = kwant.Builder(); a=1; # Lattice constant
-    lat = kwant.lattice.chain(a); 
-    
+    lat = kwant.lattice.chain(a);     
 
     for x in range(wireLength):
-        junction[ lat(x) ] = (2*t - mu)*tzs0 + Vz*t0sx + Delta_0*txs0 - 1j*gamma*t0s0;
-    
+        junction[ lat(x) ] = (2*t - mu)*tzs0 + Vz*t0sx + Delta_0*txs0 - 1j*gamma*t0s0;  
 
     if args_dict['varymu']=='yes':
         mu1=args_dict['mu1']
@@ -70,7 +64,6 @@ def NSjunction(args_dict):
             VD = args_dict['VD'];
             for x in range(0,dotLength):
                     junction[ lat(wireLength - x) ] = (2*t - mu + VD*np.cos(1.5*pi*(x)/dotLength) )*tzs0 + Vz*t0sx;
-
     
     for x in range(Nbarrier):
         junction[ lat(x) ] = (2*t - mu + Ebarrier)*tzs0 + Vz*t0sx;
@@ -121,10 +114,6 @@ def QuantumDot2(t=25, Vz=1, mu=0, dotLength = 30, VD = 4):
         
         return Dot;
 
-#def energy(args_dict):
-#        junction = NSjunction(args_dict);
-#        Vz = np.
-
 def TV(args_dict):
     args_dict['voltage'] = 0.0; 
     junction = NSjunction(args_dict);
@@ -157,9 +146,3 @@ def plot_spectrum(syst, VzRange):
         plt.xlabel("Vz")
         plt.ylabel("energy [t]")
         plt.show()
-#def main():
-#        QDot = QuantumDot2().finalized()
-#        kwant.plotter.bands(QDot, show=False)
-#        plt.xlabel("momentum [(lattice constant)^-1]")
-#        plt.ylabel("energy [t]")
-#        plt.show()
